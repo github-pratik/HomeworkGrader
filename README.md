@@ -10,6 +10,12 @@ The Homework Grader system aims to streamline the homework grading process by pr
 - AI-assisted grading suggestions
 - Analysis of grading results and student performance
 
+## Video Walkthrough 
+
+Here's a walkthrough of implemented user stories: 
+
+<img src='https://github.com/github-pratik/HomeworkGrader/blob/main/hw4grade.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' /> 
+
 ## Features
 
 ### Core Functionality
