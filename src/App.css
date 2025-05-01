@@ -1,0 +1,13 @@
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+  padding: 20px;
+  margin-top: 64px;
+}
+
+/* Add any additional custom styles here */ 
