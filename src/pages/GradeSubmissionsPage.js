@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import {
   Box,
@@ -23,6 +23,7 @@ import {
   Snackbar,
   Slide,
 } from '@mui/material';
+import confetti from 'canvas-confetti';
 import { Code as CodeIcon } from '@mui/icons-material';
 
 // Mock data for demonstration
@@ -112,6 +113,7 @@ const GradeSubmissionsPage = () => {
   const [feedback, setFeedback] = useState('');
   const [showSuccess, setShowSuccess] = useState(false);
   const [submissions, setSubmissions] = useState(mockSubmissions);
+  const confettiCanvasRef = useRef(null);
 
   useEffect(() => {
     // Check if we have navigation state with a selected submission
@@ -160,6 +162,14 @@ const GradeSubmissionsPage = () => {
 
     // Show success message
     setShowSuccess(true);
+    
+    // Trigger confetti animation
+    confetti({
+      particleCount: 150,
+      spread: 70,
+      origin: { y: 0.6 },
+      colors: ['#4caf50', '#2196f3', '#ff9800', '#e91e63', '#9c27b0']
+    });
 
     // Remove the graded submission from the list
     setSubmissions(prev => prev.filter(sub => sub.id !== selectedSubmission.id));
@@ -401,8 +411,22 @@ const GradeSubmissionsPage = () => {
           Grade submitted successfully! Returning to submissions list...
         </Alert>
       </Snackbar>
+      
+      {/* Hidden canvas for confetti (positioned off-screen but still active) */}
+      <canvas 
+        ref={confettiCanvasRef}
+        style={{ 
+          position: 'fixed',
+          pointerEvents: 'none',
+          width: '100%',
+          height: '100%',
+          top: 0,
+          left: 0,
+          zIndex: 9999
+        }}
+      />
     </Box>
   );
 };
 
-export default GradeSubmissionsPage; 
+export default GradeSubmissionsPage;
